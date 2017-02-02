@@ -33,9 +33,9 @@ string.replace(row[path_idx],'\\','/')  + ".png")
             for idx,p in enumerate(self.data_paths):
                 im = imread(p)
                 if not np.any((im > 0) & (im < 1)):
-                    self.data_paths.pop(idx)
-                    self.diag_birad.pop(idx)
-                    self.diag_ben_mal.pop(idx)
+                    self.data_paths.del(idx)
+                    self.diag_birad.del(idx)
+                    self.diag_ben_mal.del(idx)
 
         #TODO:fix later for use when csv not available
         #for root, dir, file in os.walk("ROI_AND_CROPPED"):
