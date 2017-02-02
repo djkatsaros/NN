@@ -26,12 +26,13 @@ string.replace(row[path_idx],'\\','/')  + ".png")
                     self.diag_birad.append(row[birad_idx])
                     self.diag_ben_mal.append((row[ben_mal_idx]))
             self.data_paths = self.data_paths[1:]
+            print self.data_paths[0], self.data_paths[1]
             self.diag_birad = self.diag_birad[1:]
             self.diag_ben_mal = self.diag_ben_mal[1:] #chop off column names 
             #remove masks
             for idx,p in enumerate(self.data_paths):
                 im = imread(p)
-                if np.any((im > 0) & (im < 1)):
+                if not np.any((im > 0) & (im < 1)):
                     self.data_paths.pop(idx)
                     self.diag_birad.pop(idx)
                     self.diag_ben_mal.pop(idx)
@@ -63,6 +64,6 @@ if __name__ == "__main__":
 	batchGen = test.batchGenerator(1)
 	print test.data_paths
 	batch = batchGen.next()
-        print np.sum(batch[0])
+        print batch[0].shape
 	#plt.imshow(batch[3])
 	#plt.show()
