@@ -20,7 +20,7 @@ class MRIDataHolder(object):
             with open("mass_case_description_train_set.csv",'r') as csvfile:
                 phenotypes = csv.reader(csvfile)
                 for row in phenotypes:
-                    self.data_paths.append("ROI_AND_CROPPED/DOI/" +
+                    self.data_paths.append("/home/spiro/ROI_AND_CROPPED/DOI/" +
 string.replace(row[path_idx],'\\','/')  + ".png")
                     #TODO:make path general
                     self.diag_birad.append(row[birad_idx])
@@ -33,9 +33,9 @@ string.replace(row[path_idx],'\\','/')  + ".png")
             for idx,p in enumerate(self.data_paths):
                 im = imread(p)
                 if not np.any((im > 0) & (im < 1)):
-                    self.data_paths.del(idx)
-                    self.diag_birad.del(idx)
-                    self.diag_ben_mal.del(idx)
+                    del self.data_paths[idx]
+                    del self.diag_birad[idx]
+                    del self.diag_ben_mal[idx]
 
         #TODO:fix later for use when csv not available
         #for root, dir, file in os.walk("ROI_AND_CROPPED"):
